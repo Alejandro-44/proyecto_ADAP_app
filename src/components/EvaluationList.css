@@ -1,0 +1,29 @@
+.evaluation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+  }
+  
+  .evaluation-info {
+    flex: 1; /* Ocupa todo el ancho disponible */
+    margin-bottom: 10px; /* Espaciado entre la información y el botón */
+  }
+  
+  .evaluation-action {
+    flex: 0 0 auto; /* Evita que se expanda más allá del botón */
+  }
+  
+  @media (max-width: 576px) {
+    .evaluation-item {
+      flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+      align-items: flex-start; /* Alinea los elementos al inicio */
+    }
+  
+    .evaluation-action {
+      width: 100%; /* Asegura que el botón ocupe todo el ancho */
+      text-align: center; /* Centra el botón */
+      margin-top: 5px; /* Añade un pequeño margen encima del botón */
+    }
+  }
+  

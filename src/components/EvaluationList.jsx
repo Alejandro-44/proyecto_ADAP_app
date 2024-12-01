@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './EvaluationList.css'; // Importa los estilos adicionales
 
 /**
  * Componente para renderizar una lista de evaluaciones.
@@ -13,35 +14,41 @@ const EvaluationList = ({
   title,
   evaluations,
   onEvaluationClick,
-  showDeadline = false, // Valor predeterminado usando parámetros predeterminados
-  showCompletionDate = false, // Valor predeterminado usando parámetros predeterminados
+  showDeadline = false,
+  showCompletionDate = false,
 }) => {
   return (
     <div className="card mb-4" style={{ maxWidth: '100%', overflowX: 'auto' }}>
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         {evaluations.length > 0 ? (
-          <ul className="list-group" style={{ whiteSpace: 'nowrap' }}>
+          <ul className="list-group">
             {evaluations.map((evaluation) => (
               <li
                 key={evaluation.evaluation_id}
-                className="list-group-item d-flex justify-content-between align-items-center"
+                className="list-group-item evaluation-item"
               >
-                <div>
+                <div className="evaluation-info">
                   <span className="fw-bold">{evaluation.title}</span>
                   {showDeadline && evaluation.due_date && (
-                    <p className="text-muted mb-0">Fecha Límite: {new Date(evaluation.due_date).toLocaleDateString()}</p>
+                    <p className="text-muted mb-0">
+                      Fecha Límite: {new Date(evaluation.due_date).toLocaleDateString()}
+                    </p>
                   )}
                   {showCompletionDate && evaluation.completion_date && (
-                    <p className="text-muted mb-0">Fecha de Realización: {new Date(evaluation.completion_date).toLocaleDateString()}</p>
+                    <p className="text-muted mb-0">
+                      Fecha de Realización: {new Date(evaluation.completion_date).toLocaleDateString()}
+                    </p>
                   )}
                 </div>
-                <button
-                  className="btn btn-primary btn-sm"
-                  onClick={() => onEvaluationClick(evaluation.evaluation_id)}
-                >
-                  {evaluation.is_completed ? 'Ver Resultados' : 'Realizar Evaluación'}
-                </button>
+                <div className="evaluation-action">
+                  <button
+                    className="btn btn-primary btn-sm w-100"
+                    onClick={() => onEvaluationClick(evaluation.evaluation_id)}
+                  >
+                    {evaluation.is_completed ? 'Ver Resultados' : 'Realizar Evaluación'}
+                  </button>
+                </div>
               </li>
             ))}
           </ul>

@@ -1,0 +1,25 @@
+.offcanvas {
+  width: 250px; /* Ancho del menú desplegable */
+  background-color: #f8f9fa; /* Fondo igual al navbar */
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-link {
+  padding: 10px 15px;
+  color: #000;
+  font-weight: bold;
+}
+
+.nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
