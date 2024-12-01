@@ -55,4 +55,25 @@ const getEmployees = async (token) => {
   return response.json(); // Retorna la lista de empleados
 };
 
-export default { registerCompany, registerEmployee, getEmployees };
+/**
+ * Obtiene la información del usuario actual.
+ * @param {string} token - Token de autenticación del usuario.
+ * @returns {Promise<Object>} - Información del usuario.
+ */
+const getCurrentUserInfo = async (token) => {
+  const response = await fetch(`${BASE_URL}/user/me`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Error al obtener la información del usuario');
+  }
+
+  return response.json();
+};
+
+export default { registerCompany, registerEmployee, getEmployees, getCurrentUserInfo };

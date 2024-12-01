@@ -54,4 +54,56 @@ const submitAnswers = async (evaluationId, answers, token) => {
 };
 
 
-export default { getEvaluationById, submitAnswers };
+const getTemplates = async (token) => {
+  const response = await fetch(`${BASE_URL}/templates`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Error al obtener los templates.');
+  }
+
+  return response.json();
+};
+
+const assignEvaluation = async (data, token) => {
+  const response = await fetch(`${BASE_URL}/assign`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Error al asignar la evaluación.');
+  }
+
+  return response.json();
+};
+
+const createTemplate = async (data, token) => {
+  const response = await fetch(`${BASE_URL}/template`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Error al crear el template.');
+  }
+
+  return response.json();
+};
+
+export default { getEvaluationById, submitAnswers, getTemplates, assignEvaluation, createTemplate };

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import employeeService from '@/services/employeeService';
+import userService from '@/services/userService';
 import EvaluationList from '@/components/EvaluationList';
 import UserInfoCard from '@/components/UserInfoCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,7 +20,7 @@ const EmployeeHomePage = () => {
         const token = localStorage.getItem('accessToken');
         if (!token) throw new Error('Token no encontrado. Por favor, inicie sesión.');
 
-        const userData = await employeeService.getCurrentUserInfo(token);
+        const userData = await userService.getCurrentUserInfo(token);
         const evaluations = await employeeService.getAssignedEvaluations(token);
 
         const pending = evaluations.filter((evaluation) => !evaluation.is_completed);

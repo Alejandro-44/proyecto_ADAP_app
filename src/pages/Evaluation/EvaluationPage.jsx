@@ -66,10 +66,7 @@ const EvaluationPage = () => {
       if (!token) throw new Error('Token no encontrado. Por favor, inicie sesión.');
 
       // Enviar las respuestas al servidor
-      const result = await evaluationService.submitAnswers(evaluationId, Object.entries(answers), token);
-
-      alert('¡Evaluación completada con éxito!');
-      console.log('Resultados:', result.results);
+      await evaluationService.submitAnswers(evaluationId, Object.entries(answers), token);
 
       navigate('/employee-home'); // Redirigir al Home
     } catch (err) {
