@@ -24,7 +24,7 @@ const Header = ({ companyName, routes, onLogout }) => {
     <header className="navbar navbar-expand-lg navbar-light bg-light px-3">
       {/* Nombre de la compañía */}
       <span
-        className="navbar-brand"
+        className="navbar-brand fw-bold"
         onClick={handleCompanyNameClick}
         style={{ cursor: 'pointer' }}
       >
@@ -33,7 +33,7 @@ const Header = ({ companyName, routes, onLogout }) => {
 
       {/* Botón de colapso para dispositivos móviles */}
       <button
-        className="navbar-toggler"
+        className="navbar-toggler d-lg-none" // Mostrar solo en pantallas pequeñas
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNavbar"
@@ -44,9 +44,33 @@ const Header = ({ companyName, routes, onLogout }) => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      {/* Menú Offcanvas */}
+      {/* Menú para pantallas grandes */}
+      <div className="collapse navbar-collapse d-none d-lg-flex">
+        <ul className="navbar-nav me-auto">
+          {routes.map((route, index) => (
+            <li key={index} className="nav-item">
+              <NavLink
+                to={route.path}
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? 'active-link' : 'inactive-link'}`
+                }
+              >
+                {route.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+        <button
+          className="btn btn-danger btn-sm"
+          onClick={handleLogout}
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+
+      {/* Menú Offcanvas para pantallas pequeñas */}
       <div
-        className="offcanvas offcanvas-end"
+        className="offcanvas offcanvas-start d-lg-none" // Ocultar en pantallas grandes
         tabIndex="-1"
         id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel"
@@ -69,7 +93,7 @@ const Header = ({ companyName, routes, onLogout }) => {
                 <NavLink
                   to={route.path}
                   className={({ isActive }) =>
-                    `nav-link ${isActive ? 'active' : ''}`
+                    `nav-link ${isActive ? 'active-link' : 'inactive-link'}`
                   }
                   data-bs-dismiss="offcanvas" // Cierra el menú al seleccionar una opción
                 >

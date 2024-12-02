@@ -1,25 +1,27 @@
-.offcanvas {
-  width: 250px; /* Ancho del menú desplegable */
-  background-color: #f8f9fa; /* Fondo igual al navbar */
+/* Asegúrate de que el botón de cerrar sesión en el offcanvas sea visible */
+.offcanvas .btn-close {
+  color: #000; /* Color negro para buena visibilidad */
 }
 
-.offcanvas-header {
-  border-bottom: 1px solid #ddd;
+/* Ajustes para pantallas grandes */
+.navbar {
+  justify-content: space-between;
 }
 
-.nav-link {
-  padding: 10px 15px;
-  color: #000;
+.navbar .navbar-brand {
+  font-size: 1.25rem;
   font-weight: bold;
 }
 
-.nav-link.active {
-  background-color: #007bff;
-  color: #fff;
+/* Enlace activo */
+.active-link {
+  font-weight: bold; /* Texto en negrita */
+  border-bottom: 2px solid #000; /* Línea debajo del enlace */
 }
 
-.btn-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
+/* Enlace no activo */
+.inactive-link {
+  font-weight: 300; /* Texto light */
+  color: #6c757d; /* Color gris claro */
+  text-decoration: none; /* Sin subrayado */
 }
