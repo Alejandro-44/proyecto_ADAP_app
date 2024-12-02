@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '@/services/authService';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './LoginPage.css'; // Archivo CSS con los estilos personalizados
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -31,7 +31,7 @@ const LoginPage = () => {
       if (userInfo.user_type === 'employee') {
         navigate('/employee-home'); // Redirige al homepage de empleados
       } else if (userInfo.user_type === 'company') {
-        navigate('/organization-home'); // Redirige al homepage de compañías (si existe)
+        navigate('/organization-home'); // Redirige al homepage de compañías
       } else {
         throw new Error('Tipo de usuario desconocido.');
       }
@@ -41,49 +41,33 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Inicio de Sesión</h1>
-
+    <div className="login">
+      <div className="header">
+        <span>¡Bienvenido de nuevo!</span>
+        <p>Inicia sesión para continuar.</p>
+      </div>
       {error && <div className="alert alert-danger text-center">{error}</div>}
-
-      <form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm bg-light">
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">
-            Nombre de usuario o correo:
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            className="form-control"
-            placeholder="Ingresa tu nombre de usuario"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Contraseña:
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            className="form-control"
-            placeholder="Ingresa tu contraseña"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
-            Iniciar Sesión
-          </button>
-        </div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="username"
+          placeholder="Nombre de usuario o correo"
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+        <input type="submit" value="Iniciar Sesión" />
+        <span>
+          ¿No tienes una cuenta? <a href="/register-company">Regístrate aquí</a>
+        </span>
       </form>
     </div>
   );

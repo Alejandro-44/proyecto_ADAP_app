@@ -2,16 +2,18 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import evaluationService from '@/services/evaluationService';
 import userService from '@/services/userService';
-import Header from '@/components/Header'; // Importar el Header
+import Header from '@/components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AssignEvaluationPage = () => {
   const [templates, setTemplates] = useState([]);
   const [employees, setEmployees] = useState([]);
+  const [filteredEmployees, setFilteredEmployees] = useState([]); // Lista filtrada
   const [selectedTemplate, setSelectedTemplate] = useState('');
   const [selectedEmployees, setSelectedEmployees] = useState([]);
   const [dueDate, setDueDate] = useState('');
   const [companyInfo, setCompanyInfo] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(''); // Estado para el buscador
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
@@ -35,6 +37,7 @@ const AssignEvaluationPage = () => {
 
         setTemplates(templates);
         setEmployees(employees);
+        setFilteredEmployees(employees); // Inicialmente mostrar todos
         setCompanyInfo(userData.data);
       } catch (err) {
         setError(err.message);
@@ -43,6 +46,15 @@ const AssignEvaluationPage = () => {
 
     fetchData();
   }, []);
+
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+    const filtered = employees.filter((employee) =>
+      `${employee.first_name} ${employee.last_name}`.toLowerCase().includes(query)
+    );
+    setFilteredEmployees(filtered);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -124,11 +136,24 @@ const AssignEvaluationPage = () => {
             </select>
           </div>
 
+          {/* Buscador de empleados */}
+          <div className="mb-3">
+            <label htmlFor="search" className="form-label">Buscar Empleado</label>
+            <input
+              type="text"
+              id="search"
+              className="form-control"
+              placeholder="Buscar por nombre"
+              value={searchQuery}
+              onChange={handleSearch}
+            />
+          </div>
+
           {/* Lista de empleados */}
           <div className="mb-3">
             <label htmlFor="employees" className="form-label">Seleccionar Empleados</label>
             <div className="border p-3" style={{ maxHeight: '200px', overflowY: 'auto' }}>
-              {employees.map((employee) => (
+              {filteredEmployees.map((employee) => (
                 <div className="form-check" key={employee.employee_id}>
                   <input
                     className="form-check-input"

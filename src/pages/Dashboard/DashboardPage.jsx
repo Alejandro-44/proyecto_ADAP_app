@@ -1,35 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import dashboardService from '@/services/dashboardService';
-import { useNavigate } from 'react-router-dom';
+import Loader from '@/components/Loader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DashboardPage = () => {
+  const { templateId } = useParams(); // Obtener el template_id de la URL
   const [iframeUrl, setIframeUrl] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchDashboard = async () => {
+    const fetchDashboardUrl = async () => {
       try {
         const token = localStorage.getItem('accessToken');
         if (!token) throw new Error('Token no encontrado. Por favor, inicie sesión.');
 
-        const response = await dashboardService.getDashboard(token);
+        const response = await dashboardService.getDashboardUrl(templateId, token);
         setIframeUrl(response.iframe_url);
       } catch (err) {
         setError(err.message);
-        setTimeout(() => navigate('/login'), 3000); // Redirige a login después de 3 segundos si hay un error
       } finally {
         setLoading(false);
       }
     };
 
-    fetchDashboard();
-  }, [navigate]);
+    fetchDashboardUrl();
+  }, [templateId]);
 
   if (loading) {
-    return <div className="text-center mt-5"><p>Cargando dashboard...</p></div>;
+    return <Loader />;
   }
 
   if (error) {
@@ -37,22 +38,22 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center">Dashboard</h1>
-      <div className="mt-4">
-        {iframeUrl ? (
-          <iframe
-            src={iframeUrl}
-            title="Dashboard"
-            width="100%"
-            height="600"
-            frameBorder="0"
-            allowFullScreen
-          />
-        ) : (
-          <div className="alert alert-warning text-center">No se pudo cargar el dashboard.</div>
-        )}
-      </div>
+    <div className="container-fluid p-0">
+      <button
+        className="btn btn-secondary m-3"
+        onClick={() => navigate(-1)}
+      >
+        Volver
+      </button>
+      <iframe
+        src={iframeUrl}
+        title="Metabase Dashboard"
+        style={{
+          width: '100%',
+          height: 'calc(100vh - 50px)',
+          border: 'none',
+        }}
+      ></iframe>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import userService from '@/services/userService';
 import employeeService from '@/services/employeeService';
 import CompanyInfoCard from '@/components/CompanyInfoCard';
 import EmployeeList from '@/components/EmployeeList';
+import Loader from '@/components/Loader';
 import SearchBar from '@/components/SearchBar';
 import Header from '@/components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -78,7 +79,7 @@ const CompanyHomePage = () => {
   };
 
   if (loading) {
-    return <p className="text-center mt-5">Cargando datos...</p>;
+    return <Loader />;
   }
 
   if (error) {
@@ -93,7 +94,7 @@ const CompanyHomePage = () => {
         routes={companyRoutes}
         onLogout={handleLogout}
       />
-      <div className="container mt-4">
+      <div className="container-fluid pt-0">
         <div className="row">
           {/* Información de la compañía */}
           <div className="col-md-4">
@@ -101,7 +102,7 @@ const CompanyHomePage = () => {
           </div>
 
           {/* Lista de empleados con buscador */}
-          <div className="col-md-8">
+          <div className="col-md-8 mt-10">
             <h5 className="mb-3">Empleados de la Empresa</h5>
             <SearchBar onSearch={handleSearch} />
             <EmployeeList

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import evaluationService from '@/services/evaluationService';
 import userService from '@/services/userService';
+import Header from '@/components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CreateTemplatePage = () => {
@@ -11,6 +12,13 @@ const CreateTemplatePage = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
+
+  const companyRoutes = [
+    { path: '/register-employee', label: 'Registrar Empleados' },
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/assign-evaluations', label: 'Asignar Evaluaciones' },
+    { path: '/create-template', label: 'Crear Plantilla' },
+  ];
 
   useEffect(() => {
     const fetchCompanyInfo = async () => {
@@ -66,7 +74,12 @@ const CreateTemplatePage = () => {
   };
 
   const handleGoBack = () => {
-    navigate('/company-home');
+    navigate('/oranization-home');
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    navigate('/login');
   };
 
   if (error && !companyInfo) {
@@ -74,45 +87,52 @@ const CreateTemplatePage = () => {
   }
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center">Crear Nuevo Template</h1>
+    <div>
+      <Header
+        companyName={companyInfo?.company_name || 'Mi Empresa'}
+        routes={companyRoutes}
+        onLogout={handleLogout}
+      />
+      <div className="container mt-5">
+        <h1 className="text-center">Crear Nuevo Template</h1>
 
-      {error && <div className="alert alert-danger">{error}</div>}
-      {success && <div className="alert alert-success">{success}</div>}
+        {error && <div className="alert alert-danger">{error}</div>}
+        {success && <div className="alert alert-success">{success}</div>}
 
-      <form onSubmit={handleSubmit}>
-        {/* Título del template */}
-        <div className="mb-3">
-          <label htmlFor="title" className="form-label">Título del Template</label>
-          <input
-            type="text"
-            id="title"
-            className="form-control"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Ingrese el título del template"
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          {/* Título del template */}
+          <div className="mb-3">
+            <label htmlFor="title" className="form-label">Título del Template</label>
+            <input
+              type="text"
+              id="title"
+              className="form-control"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Ingrese el título del template"
+              required
+            />
+          </div>
 
-        {/* Descripción del template */}
-        <div className="mb-3">
-          <label htmlFor="description" className="form-label">Descripción</label>
-          <textarea
-            id="description"
-            className="form-control"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Ingrese una descripción para el template"
-            required
-          ></textarea>
-        </div>
+          {/* Descripción del template */}
+          <div className="mb-3">
+            <label htmlFor="description" className="form-label">Descripción</label>
+            <textarea
+              id="description"
+              className="form-control"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Ingrese una descripción para el template"
+              required
+            ></textarea>
+          </div>
 
-        <button type="submit" className="btn btn-primary">Crear Template</button>
-        <button type="button" className="btn btn-secondary ms-2" onClick={handleGoBack}>
-          Volver
-        </button>
-      </form>
+          <button type="submit" className="btn btn-primary">Crear Template</button>
+          <button type="button" className="btn btn-secondary ms-2" onClick={handleGoBack}>
+            Volver
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
