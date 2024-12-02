@@ -1,13 +1,32 @@
 const BASE_URL = 'http://localhost:8000/dashboard';
 
+const getDashboardUrl = async (templateId, token) => {
+  const response = await fetch(`${BASE_URL}/generate_dashboard_url`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify({ template_id: templateId }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Error al obtener la URL del dashboard');
+  }
+
+  return response.json();
+};
+
+
 /**
- * Obtiene el iframe URL del dashboard desde el servidor.
+ * Obtiene el iframe URL del dashboard para empresas.
  * @param {string} token - Token de autenticación del usuario.
  * @returns {Promise<Object>} - URL del iframe del dashboard.
  */
-const getDashboard = async (token) => {
-  const response = await fetch(`${BASE_URL}/get_dashboard`, {
-    method: 'POST',
+const getCompanyDashboard = async (token) => {
+  const response = await fetch(`${BASE_URL}/generate_company_dashboard_url`, {
+    method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
     },
@@ -22,5 +41,6 @@ const getDashboard = async (token) => {
 };
 
 export default {
-  getDashboard,
+  getDashboardUrl,
+  getCompanyDashboard
 };
