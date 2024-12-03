@@ -4,6 +4,7 @@ import dashboardService from '@/services/dashboardService';
 import userService from '@/services/userService';
 import Header from '@/components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Loader from '../../components/Loader';
 
 const CompanyDashboardPage = () => {
   const [iframeUrl, setIframeUrl] = useState('');
@@ -49,7 +50,7 @@ const CompanyDashboardPage = () => {
   };
 
   if (loading) {
-    return <p className="text-center mt-5">Cargando dashboard...</p>;
+    return <Loader />;
   }
 
   if (error) {

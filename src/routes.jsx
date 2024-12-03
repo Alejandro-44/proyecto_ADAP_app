@@ -21,7 +21,7 @@ const AppRoutes = () => (
       <Route path="/organization-home" element={<CompanyHomePage />} />
       <Route path="/evaluation/:evaluationId" element={<EvaluationPage />} />
       <Route path="/dashboard" element={<CompanyDashboardPage />} />
-      <Route path="/mydashboard:templateId" element={<DashboardPage />} />
+      <Route path="/mydashboard/:templateId" element={<DashboardPage />} />
       <Route path="/assign-evaluations" element={<AssignEvaluationPage />} />
       <Route path="/create-template" element={<CreateTemplatePage />} />
     </Routes>

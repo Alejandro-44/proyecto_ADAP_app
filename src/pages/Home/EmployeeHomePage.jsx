@@ -33,6 +33,7 @@ const EmployeeHomePage = () => {
         setUserInfo(userData.data);
         setPendingEvaluations(pending);
         setCompletedEvaluations(completed);
+        console.log(completed);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -46,11 +47,6 @@ const EmployeeHomePage = () => {
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     navigate('/login'); // Redirige al login al cerrar sesión
-  };
-
-  const handleViewResults = (templateId) => {
-    // Redirige a la página del dashboard con el templateId como parámetro
-    navigate(`/mydashboard/${templateId}`);
   };
 
   if (loading) {
@@ -90,8 +86,7 @@ const EmployeeHomePage = () => {
             <EvaluationList
               title="Evaluaciones Completadas"
               evaluations={completedEvaluations}
-              onEvaluationClick={(evaluationId) => navigate(`/mydashboard/${evaluationId}`)}
-              onViewResults={handleViewResults} // Pasar la nueva función
+              onViewResults={(templateId) => navigate(`/mydashboard/${templateId}`)} 
               showCompletionDate
             />
           </div>
