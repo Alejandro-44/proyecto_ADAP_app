@@ -4,7 +4,7 @@ import dashboardService from '@/services/dashboardService';
 import userService from '@/services/userService';
 import Header from '@/components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Loader from '../../components/Loader';
+import Loader from '@/components/Loader';
 
 const CompanyDashboardPage = () => {
   const [iframeUrl, setIframeUrl] = useState('');
@@ -15,7 +15,7 @@ const CompanyDashboardPage = () => {
 
   // Definir rutas para el header
   const companyRoutes = [
-    { path: '/register-employee', label: 'Registrar Empleados' },
+    { path: '/register-employee', label: 'Registrar Miembros' },
     { path: '/assign-evaluations', label: 'Asignar Evaluaciones' },
     { path: '/dashboard', label: 'Dashboard' },
     { path: '/create-template', label: 'Crear Plantilla' },

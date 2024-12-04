@@ -15,12 +15,11 @@ const CompanyHomePage = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
-  // Definir rutas para el header
   const companyRoutes = [
-    { path: '/register-employee', label: 'Registrar Empleados' },
-    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/register-employee', label: 'Registrar Miembros' },
     { path: '/assign-evaluations', label: 'Asignar Evaluaciones' },
     { path: '/create-template', label: 'Crear Plantilla' },
+    { path: '/dashboard', label: 'Dashboard' },
   ];
 
   useEffect(() => {
@@ -87,24 +86,25 @@ const CompanyHomePage = () => {
   }
 
   return (
-    <div>
-      {/* Header con rutas dinámicas */}
-      <Header
-        companyName={companyInfo.company_name}
-        routes={companyRoutes}
-        onLogout={handleLogout}
-      />
-      <div className="container-fluid pt-0">
-        <div className="row">
-          {/* Información de la compañía */}
-          <div className="col-md-4">
-            <CompanyInfoCard companyInfo={companyInfo} />
-          </div>
-
-          {/* Lista de empleados con buscador */}
-          <div className="col-md-8 mt-10">
-            <h5 className="mb-3">Empleados de la Empresa</h5>
-            <SearchBar onSearch={handleSearch} />
+    <div className="d-flex flex-column min-vh-100">
+    {/* Header con rutas dinámicas */}
+    <Header
+      companyName={companyInfo.company_name}
+      routes={companyRoutes}
+      onLogout={handleLogout}
+    />
+    <div className="container-fluid d-flex flex-column flex-grow-1 p-0">
+      <div className="row flex-grow-1 g-0">
+        {/* Información de la compañía */}
+        <div className="col-md-3 d-flex align-items-stretch p-0 border-end">
+          <CompanyInfoCard companyInfo={companyInfo} />
+        </div>
+  
+        {/* Lista de empleados con buscador */}
+        <div className="col-md-9 d-flex flex-column pt-4 px-4">
+          <h5 className="mb-3">Miembros de la organización</h5>
+          <SearchBar onSearch={handleSearch} />
+          <div className="flex-grow-1 overflow-auto">
             <EmployeeList
               employees={filteredEmployees}
               onDeactivate={handleDeactivateEmployee}
@@ -113,6 +113,8 @@ const CompanyHomePage = () => {
         </div>
       </div>
     </div>
+  </div>
+  
   );
 };
 

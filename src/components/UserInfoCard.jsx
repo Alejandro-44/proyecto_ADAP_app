@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './UserInfoCard.css'; // Archivo CSS personalizado
 
 /**
  * Componente para mostrar la información del usuario.
@@ -7,10 +8,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
  * @param {Object} companyInfo - Información de la compañía.
  */
 const UserInfoCard = ({ employeeInfo, companyInfo }) => {
+  const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+    `${employeeInfo.first_name} ${employeeInfo.last_name}`
+  )}&size=256&background=random`;
+
   return (
-    <div className="card">
+    <div className="user-info-card d-flex flex-column align-items-center">
+      <img src={avatarUrl} alt="Avatar" className="user-avatar" />
       <div className="card-body">
-        <h5 className="card-title">Información del Usuario</h5>
         <p><strong>Nombre Completo:</strong> {employeeInfo.first_name} {employeeInfo.last_name}</p>
         <p><strong>Compañía:</strong> {companyInfo.company_name}</p>
         <p><strong>Cargo:</strong> {employeeInfo.position}</p>

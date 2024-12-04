@@ -4,9 +4,10 @@ import employeeService from '@/services/employeeService';
 import userService from '@/services/userService';
 import EvaluationList from '@/components/EvaluationList';
 import UserInfoCard from '@/components/UserInfoCard';
-import Header from '@/components/Header'; // Importar el componente Header
+import Header from '@/components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Loader from '../../components/Loader';
+import Loader from '@/components/Loader';
+import './EmployeeHomePage.css';
 
 const EmployeeHomePage = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -60,39 +61,54 @@ const EmployeeHomePage = () => {
   const { employee_info: employeeInfo, company_info: companyInfo } = userInfo;
 
   return (
-    <div>
-      {/* Header personalizado */}
-      <Header
-        companyName={companyInfo?.company_name || 'Mi Empresa'}
-        routes={[]} // Sin rutas en este caso
-        onLogout={handleLogout}
-      />
-
-      <div className="container-fluid">
-        <div className="row">
-          {/* Información del usuario */}
-          <div className="col-md-4">
-            <UserInfoCard employeeInfo={employeeInfo} companyInfo={companyInfo} />
+    <div className="d-flex flex-column min-vh-100">
+    {/* Header personalizado */}
+    <Header
+      companyName={companyInfo?.company_name || 'Mi Empresa'}
+      routes={[]} // Sin rutas en este caso
+      onLogout={handleLogout}
+    />
+  
+    <div className="container-fluid d-flex flex-column flex-grow-1 p-0">
+      <div className="row flex-grow-1 g-0">
+        {/* Información del usuario */}
+        <div className="col-md-3 d-flex align-items-stretch p-0 border-end">
+          <UserInfoCard employeeInfo={employeeInfo} companyInfo={companyInfo} />
+        </div>
+  
+        {/* Evaluaciones */}
+        <div className="col-md-9 p-0">
+          {/* Contenedor de Evaluaciones Pendientes */}
+          <div className="row g-0 row-bg-1">
+            <div className="col-12 p-4">
+              <div className="evaluation-container overflow-auto" style={{ maxHeight: '400px' }}>
+                <EvaluationList
+                  title="Evaluaciones Pendientes"
+                  evaluations={pendingEvaluations}
+                  onEvaluationClick={(evaluationId) => navigate(`/evaluation/${evaluationId}`)}
+                  showDeadline
+                />
+              </div>
+            </div>
           </div>
-
-          {/* Evaluaciones */}
-          <div className="col-md-8">
-            <EvaluationList
-              title="Evaluaciones Pendientes"
-              evaluations={pendingEvaluations}
-              onEvaluationClick={(evaluationId) => navigate(`/evaluation/${evaluationId}`)}
-              showDeadline
-            />
-            <EvaluationList
-              title="Evaluaciones Completadas"
-              evaluations={completedEvaluations}
-              onViewResults={(templateId) => navigate(`/mydashboard/${templateId}`)} 
-              showCompletionDate
-            />
+  
+          {/* Contenedor de Evaluaciones Completadas */}
+          <div className="row g-0 row-bg-2">
+            <div className="col-12 p-4">
+              <div className="evaluation-container overflow-auto" style={{ maxHeight: '400px' }}>
+                <EvaluationList
+                  title="Evaluaciones Completadas"
+                  evaluations={completedEvaluations}
+                  onViewResults={(templateId) => navigate(`/mydashboard/${templateId}`)}
+                  showCompletionDate
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

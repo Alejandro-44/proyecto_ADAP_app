@@ -2,7 +2,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import './Header.css'; // Archivo CSS adicional para estilos personalizados
+import './Header.css';
+
+import { Offcanvas } from 'bootstrap';
 
 const Header = ({ companyName, routes, onLogout }) => {
   const navigate = useNavigate();
@@ -20,11 +22,19 @@ const Header = ({ companyName, routes, onLogout }) => {
     navigate('/organization-home');
   };
 
+  const handleLinkClick = () => {
+    const offcanvasElement = document.getElementById('offcanvasNavbar');
+    const offcanvasInstance = Offcanvas.getInstance(offcanvasElement); // Usa Offcanvas como un módulo importado
+    if (offcanvasInstance) {
+      offcanvasInstance.hide(); // Cierra manualmente el menú
+    }
+  };
+
   return (
     <header className="navbar navbar-expand-lg navbar-light bg-light px-3">
       {/* Nombre de la compañía */}
       <span
-        className="navbar-brand fw-bold"
+        className="navbar-brand fw-bold pb-3"
         onClick={handleCompanyNameClick}
         style={{ cursor: 'pointer' }}
       >
@@ -33,7 +43,7 @@ const Header = ({ companyName, routes, onLogout }) => {
 
       {/* Botón de colapso para dispositivos móviles */}
       <button
-        className="navbar-toggler d-lg-none" // Mostrar solo en pantallas pequeñas
+        className="navbar-toggler d-lg-none"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNavbar"
@@ -60,17 +70,14 @@ const Header = ({ companyName, routes, onLogout }) => {
             </li>
           ))}
         </ul>
-        <button
-          className="btn btn-danger btn-sm"
-          onClick={handleLogout}
-        >
+        <button className="btn btn-danger btn-sm" onClick={handleLogout}>
           Cerrar Sesión
         </button>
       </div>
 
       {/* Menú Offcanvas para pantallas pequeñas */}
       <div
-        className="offcanvas offcanvas-start d-lg-none" // Ocultar en pantallas grandes
+        className="offcanvas offcanvas-start d-lg-none"
         tabIndex="-1"
         id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel"
@@ -95,7 +102,7 @@ const Header = ({ companyName, routes, onLogout }) => {
                   className={({ isActive }) =>
                     `nav-link ${isActive ? 'active-link' : 'inactive-link'}`
                   }
-                  data-bs-dismiss="offcanvas" // Cierra el menú al seleccionar una opción
+                  onClick={handleLinkClick} // Cierra el menú manualmente
                 >
                   {route.label}
                 </NavLink>

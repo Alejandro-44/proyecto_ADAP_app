@@ -1,29 +1,59 @@
+.evaluation-container {
+  overflow-x: hidden; /* Evita el scroll horizontal */
+  overflow-y: auto; /* Habilita el scroll vertical */
+  padding: 0;
+}
+
+.evaluation-list-header h5 {
+  margin-bottom: 1rem;
+}
+
+.evaluation-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .evaluation-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  position: relative;
+}
+
+.evaluation-info {
+  height: 60px;
+}
+
+.evaluation-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 5px;
+  background-color: #303030;
+}
+
+.evaluation-info {
+  flex: 1;
+}
+
+.evaluation-action {
+  margin-left: 15px;
+}
+
+/* Responsivo */
+@media (max-width: 576px) {
+  .evaluation-item {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .evaluation-info {
-    flex: 1; /* Ocupa todo el ancho disponible */
-    margin-bottom: 10px; /* Espaciado entre la información y el botón */
-  }
-  
+
   .evaluation-action {
-    flex: 0 0 auto; /* Evita que se expanda más allá del botón */
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
   }
-  
-  @media (max-width: 576px) {
-    .evaluation-item {
-      flex-direction: column; /* Cambia a columna en pantallas pequeñas */
-      align-items: flex-start; /* Alinea los elementos al inicio */
-    }
-  
-    .evaluation-action {
-      width: 100%; /* Asegura que el botón ocupe todo el ancho */
-      text-align: center; /* Centra el botón */
-      margin-top: 5px; /* Añade un pequeño margen encima del botón */
-    }
-  }
-  
+}

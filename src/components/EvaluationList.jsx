@@ -2,15 +2,6 @@ import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './EvaluationList.css'; // Importa los estilos adicionales
 
-/**
- * Componente para renderizar una lista de evaluaciones.
- * @param {string} title - Título de la lista.
- * @param {Array} evaluations - Lista de evaluaciones.
- * @param {Function} onEvaluationClick - Función a ejecutar al seleccionar una evaluación.
- * @param {Function} onViewResults - Función a ejecutar al seleccionar "Ver Resultados".
- * @param {boolean} showDeadline - Indica si se debe mostrar la fecha límite.
- * @param {boolean} showCompletionDate - Indica si se debe mostrar la fecha de realización.
- */
 const EvaluationList = ({
   title,
   evaluations,
@@ -20,48 +11,48 @@ const EvaluationList = ({
   showCompletionDate = false,
 }) => {
   return (
-    <div className="card mb-4" style={{ maxWidth: '100%', overflowX: 'auto' }}>
-      <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        {evaluations.length > 0 ? (
-          <ul className="list-group">
-            {evaluations.map((evaluation) => (
-              <li
-                key={evaluation.evaluation_id}
-                className="list-group-item evaluation-item d-flex justify-content-between align-items-center"
-              >
-                <div className="evaluation-info">
-                  <span className="fw-bold">{evaluation.title}</span>
-                  {showDeadline && evaluation.due_date && (
-                    <p className="text-muted mb-0">
-                      Fecha Límite: {new Date(evaluation.due_date).toLocaleDateString()}
-                    </p>
-                  )}
-                  {showCompletionDate && evaluation.completion_date && (
-                    <p className="text-muted mb-0">
-                      Fecha de Realización: {new Date(evaluation.completion_date).toLocaleDateString()}
-                    </p>
-                  )}
-                </div>
-                <div className="evaluation-action">
-                  <button
-                    className={`btn btn-${evaluation.is_completed ? 'secondary' : 'primary'} btn-sm w-100`}
-                    onClick={() =>
-                      evaluation.is_completed
-                        ? onViewResults(evaluation.template_id)
-                        : onEvaluationClick(evaluation.evaluation_id)
-                    }
-                  >
-                    {evaluation.is_completed ? 'Ver Resultados' : 'Realizar Evaluación'}
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-muted">No hay evaluaciones en esta categoría.</p>
-        )}
+    <div className="evaluation-list-container mb-4">
+      <div className="evaluation-list-header">
+        <h5>{title}</h5>
       </div>
+      {evaluations.length > 0 ? (
+        <ul className="evaluation-list">
+          {evaluations.map((evaluation) => (
+            <li
+              key={evaluation.evaluation_id}
+              className="evaluation-item d-flex justify-content-between align-items-center"
+            >
+              <div className="evaluation-info">
+                <span className="fw-bold">{evaluation.title}</span>
+                {showDeadline && evaluation.due_date && (
+                  <p className="text-muted mb-0">
+                    Fecha Límite: {new Date(evaluation.due_date).toLocaleDateString()}
+                  </p>
+                )}
+                {showCompletionDate && evaluation.completion_date && (
+                  <p className="text-muted mb-0">
+                    Fecha de Realización: {new Date(evaluation.completion_date).toLocaleDateString()}
+                  </p>
+                )}
+              </div>
+              <div className="evaluation-action">
+                <button
+                  className={`btn btn-${evaluation.is_completed ? 'secondary' : 'primary'} btn-sm`}
+                  onClick={() =>
+                    evaluation.is_completed
+                      ? onViewResults(evaluation.template_id)
+                      : onEvaluationClick(evaluation.evaluation_id)
+                  }
+                >
+                  {evaluation.is_completed ? 'Ver Resultados' : 'Realizar Evaluación'}
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-muted">No hay evaluaciones en esta categoría.</p>
+      )}
     </div>
   );
 };
@@ -72,7 +63,7 @@ EvaluationList.propTypes = {
   evaluations: PropTypes.arrayOf(
     PropTypes.shape({
       evaluation_id: PropTypes.number.isRequired,
-      template_id: PropTypes.number.isRequired, // ID del template para "Ver Resultados"
+      template_id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       is_completed: PropTypes.bool.isRequired,
       due_date: PropTypes.string,
@@ -80,7 +71,7 @@ EvaluationList.propTypes = {
     })
   ).isRequired,
   onEvaluationClick: PropTypes.func.isRequired,
-  onViewResults: PropTypes.func.isRequired, // Nueva validación para la función
+  onViewResults: PropTypes.func.isRequired,
   showDeadline: PropTypes.bool,
   showCompletionDate: PropTypes.bool,
 };

@@ -25,3 +25,62 @@
   color: #6c757d; /* Color gris claro */
   text-decoration: none; /* Sin subrayado */
 }
+
+.navbar-nav .nav-item {
+  margin-bottom: 10px; /* Añade espacio entre enlaces en offcanvas */
+}
+
+.offcanvas-body {
+  padding: 1rem; /* Asegura un buen padding interno */
+}
+
+.nav-link {
+  font-size: 1rem; /* Tamaño estándar */
+}
+
+@media (max-width: 768px) {
+  .nav-link {
+    font-size: 1.2rem; /* Aumenta ligeramente el tamaño para móviles */
+  }
+}
+
+.btn-close {
+  color: #000; /* Asegúrate de que sea visible en todos los fondos */
+}
+
+@media (max-width: 768px) {
+  .btn-close {
+    font-size: 1.2rem; /* Aumenta ligeramente el tamaño en pantallas pequeñas */
+  }
+}
+
+.offcanvas {
+  width: 80%; /* Ajusta el ancho según sea necesario */
+}
+
+@media (max-width: 768px) {
+  .offcanvas {
+    width: 100%; /* Ancho completo para pantallas móviles */
+  }
+}
+
+
+.offcanvas {
+  transition: transform 0.3s ease-in-out;
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid #ddd; /* Separa visualmente el encabezado */
+}
+
+.navbar {
+  background-color: #f8f9fa; /* Color de fondo */
+  border-bottom: 1px solid #ddd; /* Línea inferior */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #343a40;
+}
+

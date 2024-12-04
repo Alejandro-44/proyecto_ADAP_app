@@ -92,7 +92,7 @@ const EvaluationPage = () => {
   const progress = (answeredQuestions / totalQuestions) * 100;
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 mb-5">
       <h1 className="text-center">{evaluationData.title}</h1>
 
       {/* Barra de progreso */}

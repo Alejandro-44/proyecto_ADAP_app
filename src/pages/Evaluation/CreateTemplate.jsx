@@ -14,10 +14,10 @@ const CreateTemplatePage = () => {
   const navigate = useNavigate();
 
   const companyRoutes = [
-    { path: '/register-employee', label: 'Registrar Empleados' },
-    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/register-employee', label: 'Registrar Miembros' },
     { path: '/assign-evaluations', label: 'Asignar Evaluaciones' },
     { path: '/create-template', label: 'Crear Plantilla' },
+    { path: '/dashboard', label: 'Dashboard' },
   ];
 
   useEffect(() => {

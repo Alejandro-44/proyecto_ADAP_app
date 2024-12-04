@@ -33,9 +33,9 @@ const RegisterEmployeePage = () => {
   // Definir rutas para el header
   const companyRoutes = [
     { path: '/register-employee', label: 'Registrar Empleados' },
-    { path: '/dashboard', label: 'Dashboard' },
     { path: '/assign-evaluations', label: 'Asignar Evaluaciones' },
     { path: '/create-template', label: 'Crear Plantilla' },
+    { path: '/dashboard', label: 'Dashboard' },
   ];
 
   useEffect(() => {
@@ -88,11 +88,11 @@ const RegisterEmployeePage = () => {
     <div>
             {/* Header con rutas dinámicas */}
       <Header
-        companyName={companyInfo?.company_name || 'Mi Empresa'}
+        companyName={companyInfo?.company_name || 'Mi organizacion'}
         routes={companyRoutes}
         onLogout={handleLogout}
       />
-      <h1 className="text-center mb-4">Registro de Empleados</h1>
+      <h1 className="text-center mb-4 mt-4">Registro de nuevos miembros</h1>
 
       {error && <div className="alert alert-danger text-center">{error}</div>}
       {successMessage && <div className="alert alert-success text-center">{successMessage}</div>}
@@ -168,7 +168,7 @@ const RegisterEmployeePage = () => {
 
               <div className="mb-3">
                 <label htmlFor="last_name" className="form-label">
-                  Apellido:
+                  Apellidos:
                 </label>
                 <input
                   type="text"
@@ -349,7 +349,7 @@ const RegisterEmployeePage = () => {
 
           <div className="d-grid">
             <button type="submit" className="btn btn-primary">
-              Registrar Empleado
+              Registrar nuevo miembro
             </button>
           </div>
         </form>

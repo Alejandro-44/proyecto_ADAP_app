@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import evaluationService from '@/services/evaluationService';
 import userService from '@/services/userService';
 import Header from '@/components/Header';
@@ -16,13 +15,11 @@ const AssignEvaluationPage = () => {
   const [searchQuery, setSearchQuery] = useState(''); // Estado para el buscador
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const navigate = useNavigate();
-
   const companyRoutes = [
-    { path: '/register-employee', label: 'Registrar Empleados' },
+    { path: '/register-employee', label: 'Registrar Miembros' },
     { path: '/assign-evaluations', label: 'Asignar Evaluaciones' },
-    { path: '/dashboard', label: 'Dashboard' },
     { path: '/create-template', label: 'Crear Plantilla' },
+    { path: '/dashboard', label: 'Dashboard' },
   ];
 
   useEffect(() => {
@@ -138,7 +135,7 @@ const AssignEvaluationPage = () => {
 
           {/* Buscador de empleados */}
           <div className="mb-3">
-            <label htmlFor="search" className="form-label">Buscar Empleado</label>
+            <label htmlFor="search" className="form-label">Buscar miembro</label>
             <input
               type="text"
               id="search"
@@ -151,7 +148,7 @@ const AssignEvaluationPage = () => {
 
           {/* Lista de empleados */}
           <div className="mb-3">
-            <label htmlFor="employees" className="form-label">Seleccionar Empleados</label>
+            <label htmlFor="employees" className="form-label">Seleccionar miembros</label>
             <div className="border p-3" style={{ maxHeight: '200px', overflowY: 'auto' }}>
               {filteredEmployees.map((employee) => (
                 <div className="form-check" key={employee.employee_id}>
@@ -188,13 +185,6 @@ const AssignEvaluationPage = () => {
           </div>
 
           <button type="submit" className="btn btn-primary">Asignar Evaluación</button>
-          <button
-            type="button"
-            className="btn btn-secondary ms-2"
-            onClick={() => navigate('/company-home')}
-          >
-            Volver
-          </button>
         </form>
       </div>
     </div>
