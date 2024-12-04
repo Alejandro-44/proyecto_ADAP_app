@@ -1,4 +1,4 @@
-const BASE_URL =  import.meta.env.VITE_API_BASE_URL + '/dashboard';
+const BASE_URL =  import.meta.env.VITE_API_BASE_URL + 'dashboard';
 
 const getDashboardUrl = async (templateId, token) => {
   const response = await fetch(`${BASE_URL}/generate_dashboard_url`, {
