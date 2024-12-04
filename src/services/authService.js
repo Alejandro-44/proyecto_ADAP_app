@@ -1,5 +1,6 @@
-const BASE_URL = process.env.REACT_APP_API_BASE_URL +'/auth'; // Cambia esto si tu API usa otro dominio o puerto
+const BASE_URL =  import.meta.env.VITE_API_BASE_URL + '/auth'; // Cambia esto si tu API usa otro dominio o puerto
 
+console.log(BASE_URL);
 /**
  * Realiza login y obtiene el token de acceso.
  * @param {string} username - El nombre de usuario o correo.
