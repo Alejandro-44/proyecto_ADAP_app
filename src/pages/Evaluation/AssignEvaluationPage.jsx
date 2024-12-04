@@ -20,8 +20,8 @@ const AssignEvaluationPage = () => {
 
   const companyRoutes = [
     { path: '/register-employee', label: 'Registrar Empleados' },
-    { path: '/dashboard', label: 'Dashboard' },
     { path: '/assign-evaluations', label: 'Asignar Evaluaciones' },
+    { path: '/dashboard', label: 'Dashboard' },
     { path: '/create-template', label: 'Crear Plantilla' },
   ];
 
