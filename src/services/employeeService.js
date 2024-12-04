@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 /**
  * Obtiene la lista de evaluaciones asignadas al empleado.

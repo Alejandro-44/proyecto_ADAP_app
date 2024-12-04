@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000/dashboard';
+const BASE_URL = process.env.REACT_APP_API_BASE_URL + '/dashboard';
 
 const getDashboardUrl = async (templateId, token) => {
   const response = await fetch(`${BASE_URL}/generate_dashboard_url`, {

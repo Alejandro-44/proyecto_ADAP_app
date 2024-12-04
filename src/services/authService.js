@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000/auth'; // Cambia esto si tu API usa otro dominio o puerto
+const BASE_URL = process.env.REACT_APP_API_BASE_URL +'/auth'; // Cambia esto si tu API usa otro dominio o puerto
 
 /**
  * Realiza login y obtiene el token de acceso.

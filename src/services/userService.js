@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000'; // Cambia esto por el URL base de tu API
+const BASE_URL = process.env.REACT_APP_API_BASE_URL; 
 
 const registerCompany = async (data) => {
   const response = await fetch(`${BASE_URL}/company`, {
