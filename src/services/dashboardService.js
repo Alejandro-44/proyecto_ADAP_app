@@ -40,7 +40,30 @@ const getCompanyDashboard = async (token) => {
   return response.json();
 };
 
+/**
+ * Obtiene la URL del iframe para el dashboard de administrador.
+ * @param {string} token - Token de autenticación del usuario.
+ * @returns {Promise<string>} - URL del iframe del dashboard.
+ */
+const getAdminDashboardUrl = async (token) => {
+  const response = await fetch(`${BASE_URL}/generate_admin_dashboard_url`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Error al obtener el dashboard.');
+  }
+
+  const data = await response.json();
+  return data.iframe_url;
+};
+
 export default {
   getDashboardUrl,
-  getCompanyDashboard
+  getCompanyDashboard,
+  getAdminDashboardUrl
 };

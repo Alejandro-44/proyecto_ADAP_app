@@ -9,6 +9,7 @@ import RegisterEmployeePage from '@/pages/Auth/RegisterEmployeePage';
 import EmployeeHomePage from '@/pages/Home/EmployeeHomePage';
 import CreateTemplatePage from '@/pages/Evaluation/CreateTemplate';
 import CompanyDashboardPage from '@/pages/Dashboard/CompanyDashboardPage';
+import AdminHomePage from '@/pages/Home/AdminHomePage';
 
 const AppRoutes = () => (
   <BrowserRouter>
@@ -24,6 +25,7 @@ const AppRoutes = () => (
       <Route path="/mydashboard/:templateId" element={<DashboardPage />} />
       <Route path="/assign-evaluations" element={<AssignEvaluationPage />} />
       <Route path="/create-template" element={<CreateTemplatePage />} />
+      <Route path="/admin-home" element={<AdminHomePage />} />
     </Routes>
   </BrowserRouter>
 );

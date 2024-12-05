@@ -32,7 +32,10 @@ const LoginPage = () => {
         navigate('/employee-home'); // Redirige al homepage de empleados
       } else if (userInfo.user_type === 'company') {
         navigate('/organization-home'); // Redirige al homepage de compañías
+      } else if (userInfo.user_type === 'admin') {
+        navigate('/admin-home'); // Redirige al homepage de administradores
       } else {
+
         throw new Error('Tipo de usuario desconocido.');
       }
     } catch (err) {

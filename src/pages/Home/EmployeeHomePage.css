@@ -5,4 +5,7 @@
 .row-bg-2 {
   background-color: #E7EBEE; /* Color ligeramente más oscuro */
 }
-  
+
+.evaluation-container {
+  height: 50%;
+}

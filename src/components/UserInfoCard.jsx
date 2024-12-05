@@ -21,7 +21,7 @@ const UserInfoCard = ({ employeeInfo, companyInfo }) => {
         <p><strong>Cargo:</strong> {employeeInfo.position}</p>
         <p><strong>Profesión:</strong> {employeeInfo.profession}</p>
         <p><strong>Género:</strong> {employeeInfo.gender}</p>
-        <p><strong>Nacionalidad:</strong> {employeeInfo.nationality}</p>
+        <p><strong>Nacionalidad:</strong> {employeeInfo.country_of_residence}</p>
         <p><strong>Ciudad de Residencia:</strong> {employeeInfo.city_of_residence}</p>
       </div>
     </div>
@@ -36,7 +36,7 @@ UserInfoCard.propTypes = {
     position: PropTypes.string.isRequired,
     profession: PropTypes.string.isRequired,
     gender: PropTypes.string.isRequired,
-    nationality: PropTypes.string.isRequired,
+    country_of_residence: PropTypes.string.isRequired,
     city_of_residence: PropTypes.string.isRequired,
   }).isRequired,
   companyInfo: PropTypes.shape({
