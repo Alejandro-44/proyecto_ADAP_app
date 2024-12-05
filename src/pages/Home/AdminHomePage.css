@@ -1,0 +1,13 @@
+.dashboard-container {
+  flex-grow: 1; /* Permite que el contenedor crezca para llenar el espacio disponible */
+  display: flex;
+  justify-content: center; /* Centra el iframe horizontalmente */
+  align-items: center; /* Centra el iframe verticalmente */
+  height: 100%; /* Asegura que ocupe todo el alto del contenedor */
+}
+
+.dashboard-container iframe {
+  width: 100%; /* Ajusta el ancho al 100% del contenedor */
+  height: 100%; /* Ajusta el alto al 100% del contenedor */
+  border: none; /* Elimina bordes del iframe */
+}
