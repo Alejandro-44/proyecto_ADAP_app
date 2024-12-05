@@ -34,7 +34,6 @@ const EmployeeHomePage = () => {
         setUserInfo(userData.data);
         setPendingEvaluations(pending);
         setCompletedEvaluations(completed);
-        console.log(completed);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -62,26 +61,25 @@ const EmployeeHomePage = () => {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-    {/* Header personalizado */}
-    <Header
-      companyName={companyInfo?.company_name || 'Mi Empresa'}
-      routes={[]} // Sin rutas en este caso
-      onLogout={handleLogout}
-    />
-  
-    <div className="container-fluid d-flex flex-column flex-grow-1 p-0">
-      <div className="row flex-grow-1 g-0">
-        {/* Información del usuario */}
-        <div className="col-md-3 d-flex align-items-stretch p-0 border-end">
-          <UserInfoCard employeeInfo={employeeInfo} companyInfo={companyInfo} />
-        </div>
-  
-        {/* Evaluaciones */}
-        <div className="col-md-9 p-0">
-          {/* Contenedor de Evaluaciones Pendientes */}
-          <div className="row g-0 row-bg-1">
-            <div className="col-12 p-4">
-              <div className="evaluation-container overflow-auto" style={{ maxHeight: '400px' }}>
+      {/* Header personalizado */}
+      <Header
+        companyName={companyInfo?.company_name || 'Mi Empresa'}
+        routes={[]} // Sin rutas en este caso
+        onLogout={handleLogout}
+      />
+
+      <div className="container-fluid d-flex flex-column flex-grow-1 p-0">
+        <div className="row flex-grow-1 g-0">
+          {/* Información del usuario */}
+          <div className="col-md-3 d-flex align-items-stretch p-0 border-end">
+            <UserInfoCard employeeInfo={employeeInfo} companyInfo={companyInfo} />
+          </div>
+
+          {/* Evaluaciones */}
+          <div className="col-md-9 p-0 d-flex flex-column row-bg-1">
+            <div className="flex-grow-1 d-flex flex-column">
+              {/* Evaluaciones Pendientes */}
+              <div className="evaluation-container flex-grow-1 overflow-auto p-4">
                 <EvaluationList
                   title="Evaluaciones Pendientes"
                   evaluations={pendingEvaluations}
@@ -89,13 +87,9 @@ const EmployeeHomePage = () => {
                   showDeadline
                 />
               </div>
-            </div>
-          </div>
-  
-          {/* Contenedor de Evaluaciones Completadas */}
-          <div className="row g-0 row-bg-2">
-            <div className="col-12 p-4">
-              <div className="evaluation-container overflow-auto" style={{ maxHeight: '400px' }}>
+
+              {/* Evaluaciones Completadas */}
+              <div className="evaluation-container flex-grow-1 overflow-auto p-4 row-bg-2">
                 <EvaluationList
                   title="Evaluaciones Completadas"
                   evaluations={completedEvaluations}
@@ -108,7 +102,6 @@ const EmployeeHomePage = () => {
         </div>
       </div>
     </div>
-  </div>
   );
 };
 

@@ -1,86 +1,81 @@
-/* Asegúrate de que el botón de cerrar sesión en el offcanvas sea visible */
-.offcanvas .btn-close {
-  color: #000; /* Color negro para buena visibilidad */
+/* Estilo del header */
+.custom-header {
+  background-color: #2D3142; /* Fondo gris oscuro */
+  color: #F5F5F5; /* Texto claro */
+  border-bottom: 1px solid #ddd;
 }
 
-/* Ajustes para pantallas grandes */
-.navbar {
-  justify-content: space-between;
+/* Nombre de la compañía */
+.custom-company-name {
+  color: #F5F5F5;
+  transition: color 0.3s ease;
 }
 
-.navbar .navbar-brand {
-  font-size: 1.25rem;
-  font-weight: bold;
+.custom-company-name:hover {
+  color: #fff; /* Color blanco puro al pasar el cursor */
+}
+
+/* Botón de cerrar sesión */
+.logout-btn {
+  background-color: #DC4535; /* Rojo */
+  color: #fff;
+}
+
+/* Botón de colapso (burguer) */
+.custom-toggler {
+  background-color: #2D3142; /* Fondo igual al header */
+  border: none; /* Sin bordes */
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: linear-gradient(180deg, #BFC0C0 20%, #BFC0C0 80%); /* Líneas grises */
 }
 
 /* Enlace activo */
 .active-link {
-  font-weight: bold; /* Texto en negrita */
-  border-bottom: 2px solid #000; /* Línea debajo del enlace */
+  font-weight: bold;
+  border-bottom: 2px solid #F5F5F5; /* Línea debajo del enlace */
+  color: #F5F5F5;
+}
+
+.active-link:hover {
+  color: #F5F5F5; /* Color blanco puro al pasar el cursor */
+  font-weight: bold;
+  border-bottom: 2px solid #F5F5F5; /* Línea debajo del enlace */
 }
 
 /* Enlace no activo */
 .inactive-link {
   font-weight: 300; /* Texto light */
-  color: #6c757d; /* Color gris claro */
-  text-decoration: none; /* Sin subrayado */
+  color: #F5F5F5;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.navbar-nav .nav-item {
-  margin-bottom: 10px; /* Añade espacio entre enlaces en offcanvas */
+.inactive-link:hover {
+  color: #fff; /* Color blanco puro al pasar el cursor */
 }
 
-.offcanvas-body {
-  padding: 1rem; /* Asegura un buen padding interno */
-}
-
-.nav-link {
-  font-size: 1rem; /* Tamaño estándar */
-}
-
-@media (max-width: 768px) {
-  .nav-link {
-    font-size: 1.2rem; /* Aumenta ligeramente el tamaño para móviles */
-  }
-}
-
-.btn-close {
-  color: #000; /* Asegúrate de que sea visible en todos los fondos */
-}
-
-@media (max-width: 768px) {
-  .btn-close {
-    font-size: 1.2rem; /* Aumenta ligeramente el tamaño en pantallas pequeñas */
-  }
-}
-
-.offcanvas {
-  width: 80%; /* Ajusta el ancho según sea necesario */
-}
-
-@media (max-width: 768px) {
-  .offcanvas {
-    width: 100%; /* Ancho completo para pantallas móviles */
-  }
-}
-
-
-.offcanvas {
-  transition: transform 0.3s ease-in-out;
-}
-
+/* Offcanvas */
 .offcanvas-header {
-  border-bottom: 1px solid #ddd; /* Separa visualmente el encabezado */
+  border-bottom: 1px solid #ddd;
 }
 
-.navbar {
-  background-color: #f8f9fa; /* Color de fondo */
-  border-bottom: 1px solid #ddd; /* Línea inferior */
+.offcanvas {
+  background-color: #2D3142; /* Fondo del offcanvas */
+  color: #F5F5F5;
 }
 
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #343a40;
+.offcanvas-body .nav-link {
+  color: #F5F5F5;
+  transition: color 0.3s ease;
 }
 
+.offcanvas-body .nav-link:hover {
+  color: #F5F5F5 !important; /* Color blanco puro al pasar el cursor */
+}
+
+.offcanvas-body .btn {
+  background-color: #FF0000;
+  color: #F5F5F5;
+}

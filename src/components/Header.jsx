@@ -24,17 +24,17 @@ const Header = ({ companyName, routes, onLogout }) => {
 
   const handleLinkClick = () => {
     const offcanvasElement = document.getElementById('offcanvasNavbar');
-    const offcanvasInstance = Offcanvas.getInstance(offcanvasElement); // Usa Offcanvas como un módulo importado
+    const offcanvasInstance = Offcanvas.getInstance(offcanvasElement);
     if (offcanvasInstance) {
       offcanvasInstance.hide(); // Cierra manualmente el menú
     }
   };
 
   return (
-    <header className="navbar navbar-expand-lg navbar-light bg-light px-3">
+    <header className="navbar navbar-expand-lg px-3 custom-header">
       {/* Nombre de la compañía */}
       <span
-        className="navbar-brand fw-bold pb-3"
+        className="navbar-brand fw-bold pb-3 custom-company-name"
         onClick={handleCompanyNameClick}
         style={{ cursor: 'pointer' }}
       >
@@ -43,7 +43,7 @@ const Header = ({ companyName, routes, onLogout }) => {
 
       {/* Botón de colapso para dispositivos móviles */}
       <button
-        className="navbar-toggler d-lg-none"
+        className="navbar-toggler d-lg-none custom-toggler"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNavbar"
@@ -70,7 +70,7 @@ const Header = ({ companyName, routes, onLogout }) => {
             </li>
           ))}
         </ul>
-        <button className="btn btn-danger btn-sm" onClick={handleLogout}>
+        <button className="btn btn-danger btn-sm logout-btn" onClick={handleLogout}>
           Cerrar Sesión
         </button>
       </div>
@@ -102,7 +102,7 @@ const Header = ({ companyName, routes, onLogout }) => {
                   className={({ isActive }) =>
                     `nav-link ${isActive ? 'active-link' : 'inactive-link'}`
                   }
-                  onClick={handleLinkClick} // Cierra el menú manualmente
+                  onClick={handleLinkClick}
                 >
                   {route.label}
                 </NavLink>
@@ -110,7 +110,7 @@ const Header = ({ companyName, routes, onLogout }) => {
             ))}
           </ul>
           <button
-            className="btn btn-danger btn-sm w-100"
+            className="btn btn-danger btn-sm w-100 logout-btn"
             onClick={handleLogout}
           >
             Cerrar Sesión

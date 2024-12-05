@@ -37,14 +37,14 @@
   }
   
   form input[type="submit"] {
-    background-color: rgba(17, 17, 226, 0.562);
+    background-color: #4f5d75;
     color: #ffffff;
     font-size: 17px;
     cursor: pointer;
   }
   
   form input[type="submit"]:hover {
-    background-color: rgba(17, 17, 226, 0.8);
+    background-color: #4f5d75;
   }
   
   form span {
@@ -56,7 +56,7 @@
   
   form span a {
     text-decoration: none;
-    color: rgba(36, 36, 207, 0.671);
+    color: #4f5d75;
     font-weight: 500;
   }
   
